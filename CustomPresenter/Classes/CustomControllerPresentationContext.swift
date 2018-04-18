@@ -40,29 +40,29 @@ public protocol CustomControllerPresentationAnimationDriver {
     func animateDismiss(from: UIViewController, to: UIViewController, containerView: UIView)
 }
 
-extension CustomControllerPresentationContext {
-    var backgroundViewForPresentation: UIView? {
+public extension CustomControllerPresentationContext {
+    public var backgroundViewForPresentation: UIView? {
         get {
             return nil
         }
         set {}
     }
-    var backgroundAlpha: CGFloat {
+    public var backgroundAlpha: CGFloat {
         return 0.0
     }
-    var duration: TimeInterval {
+    public var duration: TimeInterval {
         return 1.0
     }
-    var animationSpringDumping: CGFloat? {
+    public var animationSpringDumping: CGFloat? {
         return 1.0
     }
-    var animationInitialSpringVelocity: CGFloat? {
+    public var animationInitialSpringVelocity: CGFloat? {
         return 0.0
     }
-    func controllerFrame(for containerView: UIView) -> CGRect {
+    public func controllerFrame(for containerView: UIView) -> CGRect {
         return containerView.bounds
     }
-    var animationDriver: CustomControllerPresentationAnimationDriver? {
+    public var animationDriver: CustomControllerPresentationAnimationDriver? {
         return nil
     }
 }
