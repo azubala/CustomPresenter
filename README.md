@@ -12,13 +12,22 @@ This library provides implementation for presentation (`CustomControllerPresenta
 
 ```swift
 protocol CustomControllerPresentationContext {
+
+    // Transition properties
+    
     var backgroundViewForPresentation: UIView? { get set }
     var backgroundAlpha: CGFloat { get }
     var duration: TimeInterval { get }
     var animationSpringDumping: CGFloat? { get }
     var animationInitialSpringVelocity: CGFloat? { get }
+
+    // Optional object that controls presentation/dismissal animation
+
     var animationDriver: CustomControllerPresentationAnimationDriver? { get }
-    func controllerFrame(for containerView: UIView) -> CGRect
+    
+    // Final frame of presented view controller or initial frame of dismissed one;
+
+    func controllerFrame(for containerView: UIView) -> CGRect 
 }
 ```
 
@@ -31,15 +40,22 @@ To use **CustomPresenter** with your view controller you need to follow these 3 
 - make sure that your view controller is becomes `transitioningDelegate` and implement delegate method:
 
 ```swift
+
+class MyViewController: UIViewController {
+    private class MyPresentationContext: CustomControllerPresentationContext {}
+
+    private var myPresentationContext = MyPresentationContext()
+}
+
 extension MyViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomControllerPresentationAnimator(presentationContext: MyPresentationContext())
+        return CustomControllerPresentationAnimator(presentationContext: myPresentationContext)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomControllerDismissAnimator(presentationContext: MyPresentationContext())
+        return CustomControllerDismissAnimator(presentationContext: myPresentationContext)
     }
 }
 ```
