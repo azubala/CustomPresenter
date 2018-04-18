@@ -49,14 +49,14 @@ extension CustomControllerDismissAnimator: UIViewControllerAnimatedTransitioning
         if let animationDriver = presentationContext?.animationDriver {
             animationDriver.prepareDismiss(from: fromViewController, to: toViewController, containerView: containerView)
         } else {
-            fromView.frame = initialControllerFrame(for: containerView)
+            fromView.frame = initialControllerFrame(for: containerView, transitionedView: fromView)
         }
         let animations = { [weak self] in
             guard let strongSelf = self else { return }
             if let animationDriver = strongSelf.presentationContext?.animationDriver {
                 animationDriver.animateDismiss(from: fromViewController, to: toViewController, containerView: containerView)
             } else {
-                fromView.frame = strongSelf.finalControllerFrame(for: containerView)
+                fromView.frame = strongSelf.finalControllerFrame(for: containerView, transitionedView: fromView)
             }
             strongSelf.presentationContext?.backgroundViewForPresentation?.alpha = 0
         }
@@ -80,17 +80,17 @@ extension CustomControllerDismissAnimator {
         presentationContext?.backgroundViewForPresentation = nil
     }
 
-    private func finalControllerFrame(for containerView: UIView) -> CGRect {
-        var rect =  initialControllerFrame(for: containerView)
+    private func finalControllerFrame(for containerView: UIView, transitionedView: UIView) -> CGRect {
+        var rect =  initialControllerFrame(for: containerView, transitionedView: transitionedView)
         rect.origin.y = containerView.bounds.maxY
         return rect
     }
 
-    private func initialControllerFrame(for containerView: UIView) -> CGRect {
+    private func initialControllerFrame(for containerView: UIView, transitionedView: UIView) -> CGRect {
         guard let context = self.presentationContext else {
             return containerView.bounds
         }
-        return context.controllerFrame(for: containerView)
+        return context.controllerFrame(for: containerView, transitionedView: transitionedView)
     }
 }
 

@@ -54,7 +54,7 @@ extension CustomControllerPresentationAnimator: UIViewControllerAnimatedTransiti
                                                 to: toViewController,
                                                 containerView: containerView)
         } else {
-            toView.frame = initialControllerFrame(for: containerView) //TODO extract do default animator            
+            toView.frame = initialControllerFrame(for: containerView, transitionedView: toView) //TODO extract do default animator
             toView.setNeedsLayout()
             toView.layoutIfNeeded()
         }
@@ -66,7 +66,7 @@ extension CustomControllerPresentationAnimator: UIViewControllerAnimatedTransiti
                                                     to: toViewController,
                                                     containerView: containerView)
             } else {
-                toView.frame = strongSelf.finalControllerFrame(for: containerView)
+                toView.frame = strongSelf.finalControllerFrame(for: containerView, transitionedView: toView)
                 presentationContext.backgroundViewForPresentation?.alpha = presentationContext.backgroundAlpha
             }
         }
@@ -94,15 +94,15 @@ extension CustomControllerPresentationAnimator {
         presentationContext?.backgroundViewForPresentation = backgroundView
     }
 
-    private func finalControllerFrame(for containerView: UIView) -> CGRect {
+    private func finalControllerFrame(for containerView: UIView, transitionedView: UIView) -> CGRect {
         guard let context = self.presentationContext else {
             return containerView.bounds
         }
-        return context.controllerFrame(for: containerView)
+        return context.controllerFrame(for: containerView, transitionedView: transitionedView)
     }
 
-    private func initialControllerFrame(for containerView: UIView) -> CGRect {
-        var rect =  finalControllerFrame(for: containerView)
+    private func initialControllerFrame(for containerView: UIView, transitionedView: UIView) -> CGRect {
+        var rect =  finalControllerFrame(for: containerView, transitionedView: transitionedView)
         rect.origin.y = containerView.bounds.maxY
         return rect
     }

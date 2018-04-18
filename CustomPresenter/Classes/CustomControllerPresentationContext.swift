@@ -29,7 +29,7 @@ public protocol CustomControllerPresentationContext {
     var animationSpringDumping: CGFloat? { get }
     var animationInitialSpringVelocity: CGFloat? { get }
     var animationDriver: CustomControllerPresentationAnimationDriver? { get }
-    func controllerFrame(for containerView: UIView) -> CGRect
+    func controllerFrame(for containerView: UIView, transitionedView: UIView) -> CGRect
 }
 
 public protocol CustomControllerPresentationAnimationDriver {
@@ -59,7 +59,7 @@ public extension CustomControllerPresentationContext {
     public var animationInitialSpringVelocity: CGFloat? {
         return 0.0
     }
-    public func controllerFrame(for containerView: UIView) -> CGRect {
+    public func controllerFrame(for containerView: UIView, transitionedView: UIView) -> CGRect {
         return containerView.bounds
     }
     public var animationDriver: CustomControllerPresentationAnimationDriver? {

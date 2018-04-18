@@ -26,8 +26,9 @@ protocol CustomControllerPresentationContext {
     var animationDriver: CustomControllerPresentationAnimationDriver? { get }
     
     // Final frame of presented view controller or initial frame of dismissed one;
+    // `transitionedView` is presented view during presentation, or dismissed one if we are undergoing dismissal
 
-    func controllerFrame(for containerView: UIView) -> CGRect 
+    func controllerFrame(for containerView: UIView, transitionedView: transitionedView) -> CGRect 
 }
 ```
 
