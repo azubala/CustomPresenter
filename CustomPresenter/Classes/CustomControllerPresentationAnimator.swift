@@ -23,8 +23,8 @@ import Foundation
 import UIKit
 
 public class CustomControllerPresentationAnimator: NSObject {
-    var presentationContext: CustomControllerPresentationContext?
-    init(presentationContext: CustomControllerPresentationContext) {
+    public var presentationContext: CustomControllerPresentationContext?
+    public init(presentationContext: CustomControllerPresentationContext) {
         self.presentationContext = presentationContext
     }
 }

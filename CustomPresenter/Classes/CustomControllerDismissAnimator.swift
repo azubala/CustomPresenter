@@ -23,9 +23,9 @@ import Foundation
 import UIKit
 
 public class CustomControllerDismissAnimator: NSObject {
-    var presentationContext: CustomControllerPresentationContext?
+    public var presentationContext: CustomControllerPresentationContext?
 
-    init(presentationContext: CustomControllerPresentationContext) {
+    public init(presentationContext: CustomControllerPresentationContext) {
         self.presentationContext = presentationContext
     }
 }
