@@ -1,5 +1,5 @@
 PODS:
-  - CustomPresenter (0.1.0)
+  - CustomPresenter (0.2.1)
   - Nimble (7.0.3)
   - Quick (1.2.0)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  CustomPresenter: f0dac467742f343416834b136613e9b55094a8e3
+  CustomPresenter: 4e1c341e046a575888c11e5ec5f951cd0e6fbf00
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
