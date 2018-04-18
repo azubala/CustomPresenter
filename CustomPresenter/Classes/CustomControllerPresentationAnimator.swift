@@ -37,8 +37,7 @@ extension CustomControllerPresentationAnimator: UIViewControllerAnimatedTransiti
                                                 to: toViewController,
                                                 containerView: containerView)
         } else {
-            toView.frame = initialControllerFrame(for: containerView) //TODO extract do default animator
-            toView.setupRoundedCorners()
+            toView.frame = initialControllerFrame(for: containerView) //TODO extract do default animator            
             toView.setNeedsLayout()
             toView.layoutIfNeeded()
         }
