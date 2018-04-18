@@ -1,11 +1,28 @@
 //
-// Copyright (c) 2018 Aleksander Zubala. All rights reserved.
+//    Copyright © 2018 Aleksander Zubala. All rights reserved.
 //
+//    Permission is hereby granted, free of charge, to any person obtaining a copy
+//    of this software and associated documentation files (the "Software"), to deal
+//    in the Software without restriction, including without limitation the rights
+//    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//    copies of the Software, and to permit persons to whom the Software is
+//    furnished to do so, subject to the following conditions:
+//
+//    The above copyright notice and this permission notice shall be included in
+//    all copies or substantial portions of the Software.
+//
+//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//    THE SOFTWARE.
 
 import Foundation
 import UIKit
 
-class CustomControllerPresentationAnimator: NSObject {
+public class CustomControllerPresentationAnimator: NSObject {
     var presentationContext: CustomControllerPresentationContext?
     init(presentationContext: CustomControllerPresentationContext) {
         self.presentationContext = presentationContext
@@ -14,11 +31,11 @@ class CustomControllerPresentationAnimator: NSObject {
 
 extension CustomControllerPresentationAnimator: UIViewControllerAnimatedTransitioning {
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return presentationContext?.duration ?? 1.0
     }
 
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let duration = transitionDuration(using: transitionContext)
         let containerView = transitionContext.containerView
 
@@ -68,7 +85,7 @@ extension CustomControllerPresentationAnimator: UIViewControllerAnimatedTransiti
 
 extension CustomControllerPresentationAnimator {
 
-    fileprivate func addBackgroundView(to containerView: UIView) {
+    private func addBackgroundView(to containerView: UIView) {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.black
         backgroundView.frame = containerView.bounds
@@ -77,14 +94,14 @@ extension CustomControllerPresentationAnimator {
         presentationContext?.backgroundViewForPresentation = backgroundView
     }
 
-    fileprivate func finalControllerFrame(for containerView: UIView) -> CGRect {
+    private func finalControllerFrame(for containerView: UIView) -> CGRect {
         guard let context = self.presentationContext else {
             return containerView.bounds
         }
         return context.controllerFrame(for: containerView)
     }
 
-    fileprivate func initialControllerFrame(for containerView: UIView) -> CGRect {
+    private func initialControllerFrame(for containerView: UIView) -> CGRect {
         var rect =  finalControllerFrame(for: containerView)
         rect.origin.y = containerView.bounds.maxY
         return rect

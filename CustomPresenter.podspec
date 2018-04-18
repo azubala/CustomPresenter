@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CustomPresenter'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Custom view controller transitioning implementation'
   s.description      = <<-DESC
 CustomPresenter provides a straighforward implementation of custom view controller transitioning for presentation and dismissal. It provides control over timing, background and metrics of presented view controller.
